@@ -13,7 +13,7 @@ clean_raw_code = [i for i in raw_code if i.strip()]
 print('Codigo limpo')
 print(clean_raw_code)
 
-print('------------')
+print('\n------------')
 print('| Resultado |')
 print('------------')
 
@@ -25,6 +25,8 @@ lexic_list_name_str = ''
 lexic_list_token_str = ''
 
 id_list = ['=', '/', '*', '+', '-', '(', ')', '{', '}']
+
+print('\nSubclasse\n')
 
 #Mostrando o nome da senteça
 for sentence in clean_raw_code:
@@ -52,10 +54,10 @@ for sentence in clean_raw_code:
         lexic_list_token_str += token
         count += 1
 
-print('Com nome da variavel')
+print('Fluxo de Lexemas')
 print('Lista: ', lexic_list_name)
 print('String: ', lexic_list_name_str)
-print('\nCom nome do token')
+print('\nFluxo de Tokens')
 print('Lista: ', lexic_list_token)
 print('String: ', lexic_list_token_str)
 
