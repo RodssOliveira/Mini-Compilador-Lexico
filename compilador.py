@@ -3,11 +3,11 @@ import re
 #Txt
 #code = open("C:\\Users\\Rodrigo\\Desktop\\code.c").read()
 
-code = 'portuguesa = corinthians + 2*palmeiras'
+code = 'x = (2*y-3)/z'
 print('Codigo Bruto')
 print(code)
 
-raw_code = re.split('(\(|\)|\+| |\=|\*|\/|\\n|\\t)', code)
+raw_code = re.split('(\(|\)|\+| |\=|\*|\/|\\n|\\t|-)', code)
 clean_raw_code = [i for i in raw_code if i.strip()]
 
 print('Codigo limpo')
