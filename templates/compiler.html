@@ -13,6 +13,13 @@
         width: 100%;
         }
 
+    .text_style{
+      font-family: Raleway,RalewayOffline,sans-serif;
+      font-weight: 500;
+      letter-spacing: 2px;
+      font-size: 0.83em;
+    }
+
   </style>
   <head>
     <title>Compilador Léxico</title>
@@ -39,7 +46,7 @@
         </div>
       </div>
       <div class="container" style="margin-top: 3%">
-          <div class="row" style="font-family: Raleway,RalewayOffline,sans-serif;font-weight: 500;letter-spacing: 2px; font-size: 0.83em;">
+          <div class="row text_style">
               <div class="col-md-4">
                   <h5>Insira seu código aqui</h5>
               </div>
@@ -49,6 +56,7 @@
                 <textarea class="form-control" rows="2" id="code" name="code"></textarea>
             </div>
           </div>
+          <i style="font-weight: 400;">Ainda em desenvolvimento, portanto não possui todas as regras implementadas. Sujeito a erro.</i>
           <div class="row" style="margin-top: 2%">
             <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 text-right">
                 <button type="submit" id="btn_search" class="btn btn-dark save">Analisar</button>
@@ -57,20 +65,20 @@
           <hr>
       </div>
       <div class="container results" style="margin-top: 2%">
-        <div class="row" style="font-family: Raleway,RalewayOffline,sans-serif;font-weight: 500;letter-spacing: 2px; font-size: 0.83em;">
+        <div class="row text_style">
             <div class="col-md-4">
                 <h5>Resultado</h5>
             </div>
         </div>
         <div class="row">
           <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
-              <label for="note" class="control-label" style="font-family: Raleway,RalewayOffline,sans-serif;font-weight: 500;letter-spacing: 2px; font-size: 0.83em;">Lexema</label>
+              <label for="note" class="control-label text_style">Lexema</label>
               <textarea class="form-control" rows="2" id="lexema" name="lexema"></textarea>
           </div>
         </div>
         <div class="row" style="margin-top: 1%">
           <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
-              <label for="note" class="control-label" style="font-family: Raleway,RalewayOffline,sans-serif;font-weight: 500;letter-spacing: 2px; font-size: 0.83em;">Token</label>
+              <label for="note" class="control-label text_style">Token</label>
               <textarea class="form-control" rows="2" id="token" name="token"></textarea>
           </div>
         </div>
