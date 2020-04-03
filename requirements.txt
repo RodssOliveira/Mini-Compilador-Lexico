@@ -1,1 +1,4 @@
 Flask==1.0.3
+Jinja2==2.10.1
+jsonify==0.5
+gunicorn==20.0.4
