@@ -3,14 +3,6 @@ import re
 #Txt
 #code = open("C:\\Users\\Rodrigo\\Desktop\\code.c").read()
 
-code = '''
-float limitedSquare(x) float x {
-/* retorna x ao quadrado, mas nunca mais do que 100 */
-return (x<=-10.0 || x>=10.0)?100:x*x;
-}
-
-'''
-
 def code_cleaner(code):
     
     #Removing comments
@@ -66,32 +58,36 @@ def sentence_type(sentence):
         return 'id ' + str(sentence)
 
 def compiler(code):
-    print('-------------')
-    print('|Codigo Bruto|')
-    print('-------------')
-    print(code)
+    # print('-------------')
+    # print('|Codigo Bruto|')
+    # print('-------------')
+    # print(code)
 
     code = code_cleaner(code)
 
-    print('-------------')
-    print('|Codigo limpo|')
-    print('-------------')
-    print(code)
+    # print('-------------')
+    # print('|Codigo limpo|')
+    # print('-------------')
+    # print(code)
 
-    print('\n------------')
-    print('| Resultado |')
-    print('------------')
+    # print('\n------------')
+    # print('| Resultado |')
+    # print('------------')
 
     count = 1
 
     lexic_final= ''
     token_final = ''
 
+    result = []
+
     #Lexema
     for sentence in code:
         token = '<' +sentence+ '>'
         lexic_final += token
 
+    result.append(lexic_final)
+    
     #Token
     count = 1
     id_list = []
@@ -109,11 +105,13 @@ def compiler(code):
                 token_final += '<'+str(token[0])+','+str(id_index)+'>'
         else:
             token_final += '<'+ str(token[0]) + '>'
+    
+    result.append(token_final)
         
-    print('Fluxo de Lexemas')
-    print('String: ', lexic_final)
-    print('\nFluxo de Tokens')
-    print('String: ', token_final)
+    # print('Fluxo de Lexemas')
+    # print('String: ', lexic_final)
+    # print('\nFluxo de Tokens')
+    # print('String: ', token_final)
 
 
-compiler(code)
+    return result
