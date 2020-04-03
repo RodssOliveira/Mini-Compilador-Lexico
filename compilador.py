@@ -54,7 +54,6 @@ def sentence_type(sentence):
         for i in table[key]:
             if sentence == i:
                 return key + ' ' + str(sentence)
-
     #Check if is float or int
     try:
         if sentence.isdigit():
@@ -65,7 +64,6 @@ def sentence_type(sentence):
             return 'Num ' + str(sentence) #Token Float?
     except ValueError:
         return 'id ' + str(sentence)
-
 
 def compiler(code):
     print('-------------')
