@@ -47,20 +47,28 @@ def code_cleaner(code):
 
 def sentence_type(sentence):
     table = {
-        'Comparison': ['<=', '>=', '==', '!=', '>', '<'],
-        'Operator': ['+', '-', '*', '/', '%', '^'],
-        'Logical': ['&&', '||', '!'],
+        'comparison': ['<=', '>=', '==', '!=', '>', '<'],
+        'operator': ['+', '-', '*', '/', '%', '^', '++', '--'],
+        'logical': ['&&', '||', '!'],
         '=': '=',
-        'Float': ['float'],
-        'Return': ['return'],
+        'float': ['float'],
+        'return': ['return'],
         '(':'(',
         ')':')',
         '{':'{',
         '}':'}',
         ';':';',
         '?': '?',
-        ':': ':'
+        ':': ':',
+        ',': ',',
+        'do': ['do'],
+        'while': ['while'],
+        'for': ['for'],
     }
+
+    #Check if sentence is betweem quotes
+    if re.findall('("[^"]*")', sentence):
+        return 'literal ' + str(sentence)
 
     #Check if the sentence is in the table
     for key in table:
@@ -71,10 +79,10 @@ def sentence_type(sentence):
     try:
         if sentence.isdigit():
             Number = int(sentence)
-            return 'Num ' + str(sentence)
+            return 'num ' + str(sentence)
         else:
             Number = float(sentence)
-            return 'Num ' + str(sentence) #Token Float?
+            return 'num ' + str(sentence) #Token Float?
     except ValueError:
         return 'id ' + str(sentence)
 
@@ -112,7 +120,7 @@ def compiler(code):
     #Token
     count = 1
     id_list = []
-    id_sentences = ['id', 'Num', 'Logical', 'Comparison', 'Operator']
+    id_sentences = ['id', 'num', 'logical', 'comparison', 'operator', 'literal']
     for sentence in code:
         token = sentence_type(sentence)
         token = token.split(' ')
