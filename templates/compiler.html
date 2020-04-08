@@ -20,6 +20,10 @@
       font-size: 0.83em;
     }
 
+    h5{
+      display: inline-block;
+    }
+
   </style>
   <head>
     <title>Compilador Léxico</title>
@@ -53,11 +57,11 @@
           </div>
           <div class="row">
             <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
-                <textarea class="form-control" rows="2" id="code" name="code"></textarea>
+                <textarea class="form-control" rows="4" id="code" name="code"></textarea>
             </div>
           </div>
           <i style="font-weight: 400;">Ainda em desenvolvimento, portanto não possui todas as regras implementadas. Sujeito a erro.</i>
-          <div class="row" style="margin-top: 2%">
+          <div class="row" style="margin-top: 1.5%">
             <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 text-right">
                 <button type="submit" id="btn_search" class="btn btn-dark save">Analisar</button>
             </div>
@@ -82,10 +86,31 @@
               <textarea class="form-control" rows="2" id="token" name="token"></textarea>
           </div>
         </div>
+        <hr style="margin-top: 3%;">
+        <div class="row text_style" style="margin-top: 2%">
+          <div class="col-md-12">
+              <h5>Tabela de Simbolos</h5>  <i><b>Beta</b></i>
+          </div>
+      </div>
+        <div class="panel-body">
+          <div class="table table-hover table-striped table-bordered">
+              <table id="table-symbols" class="table table-striped" width="100%">
+                  <thead class="thead-dark">
+                  <tr>
+                      <th class="text-center text_style" style="font-size: 0.90em;">Id</th>
+                      <th class="text_style" style="font-size: 0.90em;">Conteúdo</th>
+                  </tr>
+                  </thead>
+                  <tbody id="list_table">
+                    
+                  </tbody>
+              </table>
+          </div>
+       </div>
       </div>
     </div>
 
-    <div class="panel-footer panel-custom">
+    <div class="panel-footer panel-custom" style="margin-top: 5%;">
       <br>
       <br>
       <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
@@ -109,6 +134,12 @@
             $('.results').fadeIn();
             $('#lexema').val(json[0])
             $('#token').val(json[1])
+            
+            Object.keys(json[2]).forEach(function(key) {
+              end = json[2][key].substring(0, 2);
+              $('#list_table').append('<tr><td class="text-center">'+end.trim()+'</td><td>'+ json[2][key].substring(2)+'</td></tr>');
+            });
+  
         },
         error: function (xhr, ajaxOptions, thrownError) {
           alert('Erro')

@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, jsonify, request
 import compilador
 
 app = Flask(__name__)
+app.config['JSON_SORT_KEYS'] = False
 
 
 @app.route('/')

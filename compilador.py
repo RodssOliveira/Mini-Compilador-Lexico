@@ -1,8 +1,5 @@
 import re
 
-#Txt
-#code = open("C:\\Users\\Rodrigo\\Desktop\\code.c").read()
-
 def code_cleaner(code):
     aux = []
 
@@ -66,7 +63,7 @@ def sentence_type(sentence):
         'for': ['for'],
     }
 
-    #Check if sentence is betweem quotes
+    #Check if sentence is between quotes
     if re.findall('("[^"]*")', sentence):
         return 'literal ' + str(sentence)
 
@@ -107,6 +104,7 @@ def compiler(code):
 
     lexic_final= ''
     token_final = ''
+    table_final = {}
 
     result = []
 
@@ -132,15 +130,38 @@ def compiler(code):
                 id_list.append(token[1])
                 id_index = id_list.index(token[1]) + 1
                 token_final += '<'+str(token[0])+','+str(id_index)+'>'
+
+            #Table generator
+            try:
+                if table_final[token[1]]:
+                    table_final[token[1]] += 'Linha x Coluna Y '
+            except:
+                if token[0] == 'num':
+                    padrao = 'Qualquer constante numérica.'
+                elif token[0] == 'logical':
+                    padrao = 'Operadores lógicos &&, ||, !'
+                elif token[0] == 'comparison':
+                    padrao = ' Operadores relacionais < > <= >= == !='
+                elif token[0] == 'operator':
+                    padrao = 'Operadores aritméticos +, -, *, /, %, ^'
+                elif token[0] == 'id':
+                    padrao = 'Letra seguida por letras e/ou dígitos'
+
+
+                table_final[token[1]] = '{} Token: {}, Lexema: {}, Padrão: {} <br>Ocorrências: Linha x Coluna Y '.format(id_list.index(token[1]) + 1, token[0],  token[1], padrao)
         else:
             token_final += '<'+ str(token[0]) + '>'
     
     result.append(token_final)
+    result.append(table_final)
         
     # print('Fluxo de Lexemas')
     # print('String: ', lexic_final)
     # print('\nFluxo de Tokens')
     # print('String: ', token_final)
+    # print('\n')
+    # print('Tabela de simbolos')
+    # print(table_final)
 
 
     return result
