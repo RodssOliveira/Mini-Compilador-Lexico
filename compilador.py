@@ -32,11 +32,11 @@ def code_cleaner(code):
             aux.append([sentence])
     raw_code = [val for sublist in aux for val in sublist]
 
-    #Spliting symbols ( ) { } ; , : \n \t (\(|\)|\{|\}|\;|\,|\:|\\n|\\t)
+    #Spliting symbols ( ) { } ; , : \n \t and spaces (\(|\)|\{|\}|\;|\,|\:|\\n|\\t|\\s)
     aux.clear()
     for sentence in raw_code:
         if sentence not in quotes_list[0]:
-            aux.append(re.split('(\(|\)|\{|\}|\;|\,|\:|\\n|\\t)', sentence))
+            aux.append(re.split('(\(|\)|\{|\}|\;|\,|\:|\\n|\\t|\\s)', sentence))
         else:
             aux.append([sentence])
     raw_code = [val for sublist in aux for val in sublist]
