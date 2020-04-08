@@ -4,22 +4,43 @@ import re
 #code = open("C:\\Users\\Rodrigo\\Desktop\\code.c").read()
 
 def code_cleaner(code):
-    
+    aux = []
+
     #Removing comments
     raw_code = ''.join(re.split('\/\*(.|\n)*?\*\/', code)) # /* */
     raw_code = ''.join(re.split('[^:]\/\/.*', raw_code)) # //
 
-    #Implementar separado
-    #Spliting Logical operators <= >= || && == != (\<\=|\>\=|\|\||\&\&|\=\=|\!\=)
-    #raw_code = re.split('(\<\=|\>\=|\|\||\&\&|\=\=|\!\=)', raw_code)
+    #Spliting string between quotes ("[^"]*")
+    quotes_list = []
+    quotes_list.append(re.findall('("[^"]*")', raw_code))
+    raw_code = re.split('("[^"]*")', raw_code)
+
+    #Spliting Logical operators <= >= || && == != 'and' = (\<\=|\>\=|\|\||\&\&|\=\=|\!\=|\=)
+    for sentence in raw_code:
+        if sentence not in quotes_list[0]:
+            aux.append(re.split('(\<\=|\>\=|\|\||\&\&|\=\=|\!\=|\=)', sentence))
+        else:
+            aux.append([sentence])
+    raw_code = [val for sublist in aux for val in sublist]
     
     #Spliting Arithmetic operators += -= ++ -- = - / * % (\+\=|\-\=|\+\+|\-\-|\+|\-|\/|\*|\%)
-    #raw_code = [re.split('(\+\=|\-\=|\+\+|\-\-|\+|\-|\/|\*|\%)', sentence) for sentence in raw_code]
-    
-    #Spliting symbols (\(|\)|\{|\}|\;|\\n|\\t)
-    #raw_code = [re.split('(\(|\)|\{|\}|\;|\\n|\\t)', sentence) for sentence in raw_code]
-    
-    raw_code = re.split('(\<\=|\>\=|\|\||\&\&|\=\=|\!\=|\:|\?|\+\=|\-\=|\+\+|\-\-|\+|\-|\/|\*|\%|\(|\)|\{|\}|\;|\\n|\\t| |)', raw_code)
+    aux.clear()
+    for sentence in raw_code:
+        if sentence not in quotes_list[0]:
+            aux.append(re.split('(\+\=|\-\=|\+\+|\-\-|\+|\-|\/|\*|\%)', sentence))
+        else:
+            aux.append([sentence])
+    raw_code = [val for sublist in aux for val in sublist]
+
+    #Spliting symbols ( ) { } ; , : \n \t (\(|\)|\{|\}|\;|\,|\:|\\n|\\t)
+    aux.clear()
+    for sentence in raw_code:
+        if sentence not in quotes_list[0]:
+            aux.append(re.split('(\(|\)|\{|\}|\;|\,|\:|\\n|\\t)', sentence))
+        else:
+            aux.append([sentence])
+    raw_code = [val for sublist in aux for val in sublist]
+
     clean_raw_code = [i for i in raw_code if i.strip()]
 
     return clean_raw_code
